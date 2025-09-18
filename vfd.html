@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lift Drive & VFD Repair Parts | Elevator Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --whatsapp: #25D366;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #369);     
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .parts-section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .parts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .part-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .part-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .part-image {
+            height: 200px;
+            overflow: hidden;
+            background: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .part-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .part-card:hover .part-image img {
+            transform: scale(1.05);
+        }
+        
+        .part-details {
+            padding: 20px;
+        }
+        
+        .part-details h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .part-details p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .part-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--success);
+            font-size: 1.2rem;
+        }
+        
+        .part-no {
+            font-size: 0.9rem;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--whatsapp);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .request-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .submit-btn:hover {
+            background: #2980b9;
+        }
+        
+        .submit-btn i {
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .parts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Lift Drive & VFD Repair Parts</h1>
+            <p class="subtitle">Premium components for smooth elevator operation</p>
+        </header>
+        
+        <div class="parts-section">
+            <h2><i class="fas fa-box-open"></i> Available Parts</h2>
+            <div class="parts-grid">
+                <!-- Part 1 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="img/vfd1.jpg" alt="VFD Control Board">
+                    </div>
+                    <div class="part-details">
+                        <h3>VFD</h3>
+                        <p>#</p>
+                        <div class="part-meta">
+                            <span class="price">#</span>
+                            <span class="part-no">#</span>
+                        </div>
+                        <a href="https://wa.me/9010204009?text=Hi,%20I'm%20interested%20in%20VFD%20Control%20Board%20(Part%20No:%20VFD-CB-2023)" 
+   class="whatsapp-btn"
+   onclick="logPartInquiry(/*'VFD Control Board', '#VFD-CB-2023', '$189.99'*/)">
+   <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+</a>
+
+                            <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Part 2 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="img/vfd2.jpg" alt="image">
+                    </div>
+                    <div class="part-details">
+                        <h3>VFD</h3>
+                        <p>#</p>
+                        <div class="part-meta">
+                            <span class="price">#</span>
+                            <span class="part-no">#</span>
+                        </div>
+                        <a href="https://wa.me/9010204009?text=Hi,%20I'm%20interested%20in%20VFD%20Control%20Board%20(Part%20No:%20VFD-CB-2023)" 
+                        class="whatsapp-btn"
+                        onclick="logPartInquiry(/*'VFD Control Board', '#VFD-CB-2023', '$189.99'*/)">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                     </a>
+                     
+                            <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Part 3 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="img/vfd3.jpg" alt="image">
+                    </div>
+                    <div class="part-details">
+                        <h3>VFD</h3>
+                        <p>#</p>
+                        <div class="part-meta">
+                            <span class="price">#</span>
+                            <span class="part-no">#</span>
+                        </div>
+                        <a href="https://wa.me/9010204009?text=Hi,%20I'm%20interested%20in%20VFD%20Control%20Board%20(Part%20No:%20VFD-CB-2023)" 
+                        class="whatsapp-btn"
+                        onclick="logPartInquiry(/*'VFD Control Board', '#VFD-CB-2023', '$189.99'*/)">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                     </a>
+                     
+                            <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Part 4 -->
+                <div class="part-card">
+                    <div class="part-image">
+                        <img src="#" alt="image">
+                    </div>
+                    <div class="part-details">
+                        <h3>Null</h3>
+                        <p>#</p>
+                        <div class="part-meta">
+                            <span class="price">#</span>
+                            <span class="part-no">#</span>
+                        </div>
+                        <a href="https://wa.me/9010204009?text=Hi,%20I'm%20interested%20in%20VFD%20Control%20Board%20(Part%20No:%20VFD-CB-2023)" 
+                             class="whatsapp-btn"
+                                  onclick="logPartInquiry(/*'VFD Control Board', '#VFD-CB-2023', '$189.99'*/)">
+                         <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+
+                            <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="request-form">
+            <h2><i class="fas fa-search"></i> Can't Find Your Part?</h2>
+            <p style="margin-bottom: 20px; color: #555;">Request a specific part and we'll get back to you immediately.</p>
+          
+            <form id="partRequestForm">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" required placeholder="John Smith">
+              </div>
+          
+              <div class="form-group">
+                <label for="phone">WhatsApp Number</label>
+                <input type="tel" id="phone" required placeholder="+1234567890">
+              </div>
+          
+              <div class="form-group">
+                <label for="partName">Part Name/Model</label>
+                <input type="text" id="partName" required placeholder="e.g. Mitsubishi VFD Module">
+              </div>
+          
+              <div class="form-group">
+                <label for="partDetails">Additional Details</label>
+                <textarea id="partDetails" placeholder="Any specifications, photos, or other requirements"></textarea>
+              </div>
+          
+              <div class="form-group">
+                <label for="urgency">Urgency</label>
+                <select id="urgency">
+                  <option value="standard">Standard Request</option>
+                  <option value="urgent">Urgent (Need within 48 hours)</option>
+                  <option value="emergency">Emergency (Need today)</option>
+                </select>
+              </div>
+          
+              <button type="button" class="submit-btn" onclick="submitRequest()">
+                <i class="fas fa-paper-plane"></i> Send Part Request via WhatsApp
+              </button>
+            </form>
+          </div>
+          
+          <script>
+            // available parts inquiry 
+            function logPartInquiry(partName, partNumber, price) {
+                const data = {
+                partName: partName,
+                partNumber: partNumber,
+                price: price,
+                timestamp: new Date().toISOString()
+                };
+
+                fetch("https://script.google.com/macros/s/AKfycbx0TWSEddrPvuI-OPrEpZaj0O17vTIWVemiUh0EXXmqQSfVLtr_73zFUdKU5mCCZIRvrw/exec", {
+                method: "POST",
+                mode: "no-cors",  // Required for no-CORS Apps Script
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+                }).catch((error) => {
+                console.error("Submission failed:", error);
+                });
+            }
+
+
+//urgent parts requirements logic
+            function fetchLocation(callback) {
+              if (!navigator.geolocation) {
+                callback(null);
+                return;
+              }
+          
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  callback({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                  });
+                },
+                () => callback(null)
+              );
+            }
+          
+            function submitRequest() {
+              const name = document.getElementById('name').value.trim();
+              const phone = document.getElementById('phone').value.trim();
+              const partName = document.getElementById('partName').value.trim();
+              const partDetails = document.getElementById('partDetails').value.trim();
+              const urgency = document.getElementById('urgency').value;
+          
+              if (!name || !phone || !partName) {
+                alert("Please fill in all required fields!");
+                return;
+              }
+          
+              fetchLocation((location) => {
+                const data = {
+                  name,
+                  phone,
+                  partName,
+                  partDetails,
+                  urgency,
+                  location: location || { latitude: "N/A", longitude: "N/A" },
+                  timestamp: new Date().toISOString()
+                };
+          
+                sendToGoogleSheets(data);
+                sendToWhatsApp(data);
+              });
+            }
+          
+            function sendToGoogleSheets(data) {
+              fetch("https://script.google.com/macros/s/AKfycbzFpY40NW6KXxadOXBszZVRVN95miaeycT8R_9w9QguI0ZKvXZYLTsKsQgd-inkOAA/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              }).catch((error) => {
+                console.error("Google Sheets submission error:", error);
+              });
+            }
+          
+            function sendToWhatsApp(data) {
+              const urgencyText = {
+                'standard': 'Standard Request',
+                'urgent': '❗ Urgent (48 hours)',
+                'emergency': '🚨 Emergency (Today)'
+              };
+          
+              const googleMapsUrl = `https://www.google.com/maps?q=${data.location.latitude},${data.location.longitude}`;
+          
+              const message = `New Part Request
+                               Name: ${data.name}
+                               Part Needed: ${data.partName}
+                               Urgency: ${urgencyText[data.urgency]}
+                               Details: ${data.partDetails || 'None provided'}
+                               Contact: ${data.phone}
+                               Location: ${googleMapsUrl}`.trim();
+          
+              window.open(`https://wa.me/9010204009?text=${encodeURIComponent(message)}`, '_blank');
+              document.getElementById('partRequestForm').reset();
+            }
+          </script>
+          
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technician Entry Form</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      text-align: center;
+      color: #004aad;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, select, button {
+      width: 100%;
+      margin-bottom: 16px;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #004aad;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #003280;
+    }
+
+    .generated-code {
+      display: flex;
+      align-items: center;
+    }
+
+    .generated-code input {
+      width: 80%;
+    }
+
+    .generated-code button {
+      width: 20%;
+    }
+
+    #locationStatus {
+      font-size: 14px;
+      color: green;
+    }
+
+    /* Flexbox for responsive layout */
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .flex-item {
+      flex: 1 1 calc(50% - 10px);
+      min-width: 200px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .flex-container {
+        flex-direction: column;
+      }
+      .flex-item {
+        width: 100%;
+      }
+    }
+
+
+    /**data log button style**/
+    .data-logs-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.data-logs-btn:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Horizontal alignment for the button */
+.data-logs-container {
+  display: flex;
+  justify-content: center; /* Aligns horizontally */
+  margin: 20px 0; /* Adds some spacing */
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Technician Entry Log</h2>
+    <div class="data-logs-container">
+      <div class="data-logs-btn" onclick="openDataLogs()">Data Logs</div>
+    </div>
+    
+    
+    <form id="technicianForm">
+      <div class="flex-container">
+        <div class="flex-item">
+          <label for="technicianName">Technician Name</label>
+          <input type="text" id="technicianName" required>
+        </div>
+
+        <div class="flex-item">
+          <label for="customerName">Customer Name</label>
+          <input type="text" id="customerName" required>
+        </div>
+      </div>
+
+      <label for="jobDescription">Job Description</label>
+      <input type="text" id="jobDescription" required>
+
+      <label for="status">Status</label>
+      <select id="status">
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+        <option value="Terminated">Terminated</option>
+      </select>
+
+      <label for="address">Customer Address</label>
+      <input type="text" id="address" required>
+
+      <div class="form-section generated-code">
+        <label for="generatedJobCode">Generated Job Code</label>
+        <input type="text" id="generatedJobCode" readonly>
+        <button type="button" onclick="generateJobCode()">Generate Code</button>
+      </div>
+
+      <label for="manualJobCode">Manual Job Code</label>
+      <input type="text" id="manualJobCode" required>
+
+      <p id="locationStatus">Fetching location...</p>
+
+      <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Generate Job Code
+    function generateJobCode() {
+      const technicianName = document.getElementById("technicianName").value.trim();
+      const customerName = document.getElementById("customerName").value.trim();
+
+      if (technicianName && customerName) {
+        const techFirst = technicianName.charAt(0);
+        const techLast = technicianName.charAt(technicianName.length - 1);
+        const customerFirst = customerName.charAt(0);
+        const customerLast = customerName.charAt(customerName.length - 1);
+
+        const jobCode = `${customerFirst}${customerLast}${techFirst}${techLast}EL`;
+        document.getElementById("generatedJobCode").value = jobCode;
+      } else {
+        alert("Please enter both Technician and Customer names to generate Job Code.");
+      }
+    }
+
+    // Fetch current location
+    function fetchLocation(callback) {
+      const status = document.getElementById("locationStatus");
+      status.textContent = "Fetching location...";
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          status.textContent = "Location fetched successfully!";
+          callback({ latitude, longitude });
+        },
+        () => {
+          status.textContent = "Unable to fetch location.";
+          callback(null);
+        }
+      );
+    }
+
+    // Submit form data
+    function submitForm() {
+      const technicianName = document.getElementById("technicianName").value.trim();
+      const customerName = document.getElementById("customerName").value.trim();
+      const jobDescription = document.getElementById("jobDescription").value.trim();
+      const status = document.getElementById("status").value;
+      const generatedJobCode = document.getElementById("generatedJobCode").value.trim();
+      const manualJobCode = document.getElementById("manualJobCode").value.trim();
+      const address = document.getElementById("address").value.trim();
+
+      fetchLocation((location) => {
+        const data = {
+          technicianName,
+          customerName,
+          jobDescription,
+          address,
+          generatedJobCode,
+          manualJobCode,
+          status,
+          location: location || { latitude: "N/A", longitude: "N/A" },
+          timestamp: new Date().toISOString(),
+        };
+
+        // Send data to Google Sheets
+        sendToGoogleSheets(data);
+
+        // Send data to WhatsApp
+        sendToWhatsApp(data);
+      });
+    }
+
+    // Send data to Google Sheets
+    function sendToGoogleSheets(data) {
+      fetch(
+        "https://script.google.com/macros/s/AKfycbzfc8S2PRR4QDbyz0xtmJKbCXoM9sjKZOrvTwAzF7I5zuJnm-lJdSMwLmX-wR6He6IgrA/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
+        .then(() => {
+          alert("Form submitted successfully!");
+          document.getElementById("technicianForm").reset();
+          document.getElementById("locationStatus").textContent = "Fetching location...";
+        })
+        .catch((error) => {
+          console.error("Error submitting form:", error);
+        });
+    }
+
+    // Send data to WhatsApp
+    function sendToWhatsApp(data) {
+      const phoneNumber = "917842137763"; // Replace with your phone number
+      const googleMapsUrl = `https://www.google.com/maps?q=${data.location.latitude},${data.location.longitude}`;
+      const whatsappMessage = `
+        Technician Name: ${data.technicianName}
+        Customer Name: ${data.customerName}
+        Job Description: ${data.jobDescription}
+        Address: ${data.address}
+        Generated Job Code: ${data.generatedJobCode}
+        Manual Job Code: ${data.manualJobCode}
+        Status: ${data.status}
+        Location: ${googleMapsUrl}
+      `.trim();
+
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+        whatsappMessage
+      )}`;
+      window.open(whatsappUrl, "_blank");
+    }
+
+    /** logs data button logic**/
+    function openDataLogs() {
+  window.open("data_table.html", "_blank"); // Replace 'data-logs.html' with your URL
+}
+
+
+  </script>
+</body>
+</html>
