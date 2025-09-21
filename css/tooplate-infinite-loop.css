@@ -23,12 +23,6 @@ padding: 10px;
   padding: 10px;
 }
 
-/*scroll fix*/
-html {
-  scroll-behavior: smooth;   /* enables smooth scrolling */
-  scroll-padding-top: 80px;  /* reserve space for fixed navbar */
-}
-
 
 /*hero section btn*/
 .H-btn {
@@ -881,3 +875,4 @@ p {
     margin: 0;
   }
 }
+
