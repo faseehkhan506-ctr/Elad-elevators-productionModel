@@ -80,7 +80,7 @@ function toggleForm(type) {
     whatsappMessage += `Number of Passengers (Confirm): ${encodeURIComponent(passengers2)}%0A`;
     whatsappMessage += `Type of Door: ${encodeURIComponent(doorType)}%0A`;
   
-    const phoneNumberWhatsApp = '917842137763'; // Replace with your phone number
+    const phoneNumberWhatsApp = '9010204008'; // Replace with your phone number
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=${phoneNumberWhatsApp}&text=${whatsappMessage}`;
   
     window.open(whatsappUrl, '_blank');
@@ -126,4 +126,5 @@ function toggleForm(type) {
     .catch(error => {
       console.error('Error sending data to Google Sheets:', error);
     });
+
   }
